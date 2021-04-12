@@ -7,8 +7,10 @@ import sigpyproc as spp
 #################
 MP4  = sys.argv[1]
 FIL  = sys.argv[2]
-REF  = "/data/01_NGC6440_cdp_02sep2018_bs5_80us.fil"
-print (MP4,FIL)
+REF  = sys.argv[3]
+print (f" Input MP4 file  = {MP4}")
+print (f" Output fil file = {FIL}")
+print (f" Reference fil file = {REF}")
 GULP = 2560
 NCH  = 1024
 M_FRAME = GULP * NCH
@@ -36,7 +38,8 @@ while True:
     ofil.cwrite (jj)
     NFRAMES = NFRAMES + 1
     gc.collect()
-print ("NFRAMES = ", NFRAMES)
+print (f" Number of FRAMES = {NFRAMES}")
+
 pp.stdout.close ()
 pp.wait()
 ofil.close ()

@@ -6,7 +6,8 @@ import gc
 #################
 FIL  = sys.argv[1]
 OIL  = sys.argv[2]
-print (FIL, OIL)
+print (f" Input fil file  = {FIL}")
+print (f" Output MP4 file = {OIL}")
 GULP = 2560
 NCH  = 1024
 #################
@@ -32,7 +33,6 @@ for i,_,x in rp:
     NFRAMES = NFRAMES + 1
     gc.collect ()
 #################
-print ("")
-print ("NFRAMES = ", NFRAMES)
+print (f" Number of FRAMES = {NFRAMES}")
 pp.stdin.close ()
 pp.wait()
