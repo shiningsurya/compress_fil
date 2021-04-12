@@ -3,12 +3,13 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mc
 import sigpyproc as spp
 import pickle as pkl
+import sys
 import gc
 #################
-PNG  = "err/frame_{}.png"
-FIL  = "./2010-12-12-03:46:51.fil"
-OIL  = "./test_2bit.fil"
-GULP = 256000
+FIL  = sys.argv[1]
+OIL  = sys.argv[2]
+EIL  = sys.argv[3]
+GULP = 25600
 NCH  = 1024
 #################
 fil  = spp.FilReader (FIL)
@@ -41,4 +42,4 @@ for fread, oread in zip(frp, orp):
 #################
 print ("")
 print ("NFRAMES = ", NFRAMES)
-np.save ("oerr.npy", np.array (ERR))
+np.save (EIL, np.array (ERR))

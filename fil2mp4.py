@@ -13,7 +13,7 @@ NCH  = 1024
 pp   = (
     ffmpeg
     .input  ("pipe:", format='rawvideo', pix_fmt='gray', s='{}x{}'.format(GULP, NCH))
-    .output (OIL,     format='mp4',      pix_fmt='gray', r=25)
+    .output (OIL,     format='mp4',      pix_fmt='yuv420p', r=25)
     .overwrite_output ()
     .run_async (pipe_stdin=True)
     )
@@ -22,12 +22,9 @@ fil  = spp.FilReader (FIL)
 rp   = fil.readPlan (GULP, verbose=True)
 oo   = np.empty ((GULP, NCH,), dtype=np.uint8)
 #################
-"""
-Made for two bits
-"""
 NFRAMES = 0
 for i,_,x in rp:
-    oo[:i,:] = 84 * x.reshape ((-1, NCH))
+    oo[:i,:] = x.reshape ((-1, NCH))
     if i != GULP:
         oo[i:,:] = 0
     #
